@@ -41,10 +41,19 @@ public class HazelcastConfig {
          config.addMapConfig(demoMapConfig);
 
         MapStoreConfig empMapStoreConfig = new MapStoreConfig();
-        empMapStoreConfig.setImplementation(employeeMapstore).setWriteDelaySeconds(0);
+        empMapStoreConfig.setImplementation(employeeMapstore)
+                .setWriteDelaySeconds(30)
+                .setInitialLoadMode(MapStoreConfig.InitialLoadMode.EAGER);
 
         MapConfig employeeMapConfig = new MapConfig();
         employeeMapConfig.setMapStoreConfig(empMapStoreConfig).setName("employeeMap");
+
+        EvictionConfig evictionConfig = new EvictionConfig();
+        evictionConfig.setEvictionPolicy(EvictionPolicy.LFU)
+                .setMaxSizePolicy(MaxSizePolicy.ENTRY_COUNT)
+                .setSize(5);
+
+        employeeMapConfig.setEvictionConfig(evictionConfig);
 
         config.addMapConfig(employeeMapConfig);
 
