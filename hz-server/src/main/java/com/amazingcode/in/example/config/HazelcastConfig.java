@@ -1,4 +1,4 @@
-package com.amazingcode.in.example.config;
+/*package com.amazingcode.in.example.config;
 
 import com.amazingcode.in.example.mapstore.EmployeeMapStore;
 import com.hazelcast.config.*;
@@ -60,3 +60,4 @@ public class HazelcastConfig {
         return Hazelcast.newHazelcastInstance(config);
     }
 }
+*/
